@@ -18,3 +18,17 @@
 .menu > li:nth-child(1):before {
   padding: 0;
 }
+
+/*     bio      */
+#bio label {
+	width: 150px;
+}
+
+#bio input {
+	margin-right: 40px;
+	width: 250px;
+}
+
+#bio .row > div {
+	display: inline-block;
+}
