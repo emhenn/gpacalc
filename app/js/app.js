@@ -4,4 +4,5 @@
 angular
 	.module('gpaCalc', [])
 	.controller('gpaCalcController', function GpaCalcController($scope) {
+		$scope.terms = [ 'Winter', 'Spring', 'Summer', 'Fall' ];
 	});

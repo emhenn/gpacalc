@@ -32,3 +32,9 @@
 #bio .row > div {
 	display: inline-block;
 }
+
+/*     validation     */
+
+input.ng-invalid.ng-dirty {
+	background-color: pink;
+}

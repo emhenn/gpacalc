@@ -16,28 +16,62 @@
 
 		<h1>GPA Calculator - Angular Demo</h1>
 
+		<form name="gpaCalcForm">
+
 		<div id="bio">
 			<div class="row">
 				<div>
 					<label for="name">Applicant Name:</label>
-					<input type="text" id="name" placeholder="Name"/>
+					<input type="text" id="name" placeholder="Name" ng-model="bio.name"/>
 				</div>
 				<div>
 					<label for="school">School Name:</label>
-					<input type="text" id="school" placeholder="School"/>
+					<input type="text" id="school" placeholder="School" ng-model="bio.school"/>
 				</div>
 			</div>
 			<div class="row">
 				<div>
 					<label for="degree">Degree Program:</label>
-					<input type="text" id="degree" placeholder="Degree"/>
+					<input type="text" id="degree" placeholder="Degree" ng-model="bio.degree"/>
 				</div>
 				<div>
 					<label for="major">Major:</label>
-					<input type="text" id="major" placeholder="Major"/>
+					<input type="text" id="major" placeholder="Major" ng-model="bio.major"/>
 				</div>
 			</div>
 		</div>
+
+		<div id="new-course">
+			<div class="row">
+				<div>
+					<label>Schedule:</label>
+					<input type="radio" name="schedule" id="semester" value="semester" required ng-model="course.schedule" />
+					<label for="semester">Semester</label>
+					<input type="radio" name="schedule" id="quarter" value="quarter" required ng-model="course.schedule" />
+					<label for="quarter">Quarter</label>
+				</div>
+				<div>
+					<label for="term">Term:</label>
+					<select id="term" ng-model="course.term" required ng-options="t for t in terms"></select>
+				</div>
+				<div>
+					<label for="year">Year:</label>
+					<input type="text" id="year" placeholder="YYYY" required ng-pattern="/^\d{4}$/" ng-model="course.year"/>
+				</div>
+				<div>
+					<label for="grade">Grade:</label>
+					<input type="text" id="grade" required ng-model="course.grade"/>
+				</div>
+				<div>
+					<label for="units">Units:</label>
+					<input type="text" id="units" required="" ng-model="course.units"/>
+				</div>
+				<div>
+					<button type="button" class="btn" ng-disabled="gpaCalcForm.$invalid" ng-click="addClass()">Add Class</button>
+				</div>
+			</div>
+		</div>
+		</form>
 
 		<!-- In production use:
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
