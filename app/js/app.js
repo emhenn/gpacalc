@@ -24,4 +24,7 @@ angular
 			}
 			$scope.courses.push(new Course(course));
 		};
+		$scope.deleteClass = function (course) {
+			$scope.courses.splice($scope.courses.indexOf(course), 1);
+		}
 	});
