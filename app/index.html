@@ -67,10 +67,29 @@
 					<input type="text" id="units" required="" ng-model="course.units"/>
 				</div>
 				<div>
-					<button type="button" class="btn" ng-disabled="gpaCalcForm.$invalid" ng-click="addClass()">Add Class</button>
+					<button type="button" class="btn" ng-disabled="gpaCalcForm.$invalid" ng-click="addClass(course, gpaCalcForm)">Add Class</button>
 				</div>
 			</div>
 		</div>
+		
+		<div id="courses">
+			<table>
+				<tr>
+					<th></th><th>Year</th><th>Term</th><th>Schedule</th><th>Grade</th><th>Units</th><th>Adj Units</th><th>School</th>
+				</tr>
+				<tr ng-repeat="course in courses | orderBy:['year', 'term', 'schedule']">
+					<td><button type="button" ng-click="deleteClass(course)">Delete</button></td>
+					<td>{{course.year}}</td>
+					<td>{{course.term}}</td>
+					<td>{{course.schedule}}</td>
+					<td>{{course.grade}}</td>
+					<td>{{course.units}}</td>
+					<td>{{course.adjustedUnits() | number: 2}}</td>
+					<td>{{course.x}}</td>
+				</tr>
+			</table>
+		</div>
+
 		</form>
 
 		<!-- In production use:
