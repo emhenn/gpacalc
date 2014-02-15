@@ -8,13 +8,13 @@ angular
 			this.schedule = newcourse.schedule;
 			this.term = newcourse.term;
 			this.year = newcourse.year;
-			this.grade = newcourse.grade;
+			this.grade = newcourse.grade.toUpperCase();
 			this.units = newcourse.units;
-			this.school = newcourse.school.toString();
+			this.school = newcourse.school === undefined ? '' : newcourse.school.toString();
 			this.adjustedUnits = function () {
 				return this.units * (this.schedule === 'semester' ? 1 : 2 / 3);
 			};
-			this.gradePoints = function () {
+			this.gradeValue = function () {
 				switch (this.grade) {
 				case "A+":
 					return 4.33;
@@ -49,6 +49,9 @@ angular
 				}
 				return 0;
 			};
+			this.gradePoints = function () {
+				return this.gradeValue() * this.adjustedUnits();
+			};
 		}
 		$scope.terms = [ 'Winter', 'Spring', 'Summer', 'Fall' ];
 		$scope.courses = [];
@@ -65,5 +68,10 @@ angular
 			return _.reduce($scope.courses, function (memo, crse) {
 				return memo + crse.adjustedUnits();
 			}, 0);
+		};
+		$scope.gradePointAverage = function () {
+			return _.reduce($scope.courses, function (memo, crse) {
+				return memo + crse.gradePoints();
+			}, 0) / $scope.adjustedUnitTotal();
 		};
 	});
