@@ -14,13 +14,11 @@ angular
 				return this.units * (this.schedule === 'semester' ? 1 : 2 / 3);
 			};
 		}
+		$scope.courses = [];
 		$scope.terms = [ 'Winter', 'Spring', 'Summer', 'Fall' ];
 		$scope.addClass = function (course, courseForm) {
 			if (courseForm.$invalid) {
 				return;
-			}
-			if ($scope.courses === undefined) {
-				$scope.courses = [];
 			}
 			$scope.courses.push(new Course(course));
 		};
@@ -28,10 +26,8 @@ angular
 			$scope.courses.splice($scope.courses.indexOf(course), 1);
 		};
 		$scope.adjustedUnitTotal = function () {
-			return _.reduce($scope.courses,
-				function (memo, crse) {
-					return memo + crse.adjustedUnits();
-				},
-				0);
+			return _.reduce($scope.courses, function (memo, crse) {
+				return memo + crse.adjustedUnits();
+			}, 0);
 		};
 	});
