@@ -22,21 +22,21 @@
 			<div class="row">
 				<div>
 					<label for="name">Applicant Name:</label>
-					<input type="text" id="name" placeholder="Name" ng-model="bio.name"/>
+					<input type="text" id="name" placeholder="Name" ng-model="gpacalc.name"/>
 				</div>
 				<div>
 					<label for="school">School Name:</label>
-					<input type="text" id="school" placeholder="School" ng-model="bio.school"/>
+					<input type="text" id="school" placeholder="School" ng-model="gpacalc.school"/>
 				</div>
 			</div>
 			<div class="row">
 				<div>
 					<label for="degree">Degree Program:</label>
-					<input type="text" id="degree" placeholder="Degree" ng-model="bio.degree"/>
+					<input type="text" id="degree" placeholder="Degree" ng-model="gpacalc.degree"/>
 				</div>
 				<div>
 					<label for="major">Major:</label>
-					<input type="text" id="major" placeholder="Major" ng-model="bio.major"/>
+					<input type="text" id="major" placeholder="Major" ng-model="gpacalc.major"/>
 				</div>
 			</div>
 		</div>
@@ -45,29 +45,29 @@
 			<div class="row">
 				<div>
 					<label>Schedule:</label>
-					<input type="radio" name="schedule" id="semester" value="semester" required ng-model="course.schedule" />
+					<input type="radio" name="schedule" id="semester" value="semester" required ng-model="gpacalc.schedule" />
 					<label for="semester">Semester</label>
-					<input type="radio" name="schedule" id="quarter" value="quarter" required ng-model="course.schedule" />
+					<input type="radio" name="schedule" id="quarter" value="quarter" required ng-model="gpacalc.schedule" />
 					<label for="quarter">Quarter</label>
 				</div>
 				<div>
 					<label for="term">Term:</label>
-					<select id="term" ng-model="course.term" required ng-options="t for t in terms"></select>
+					<select id="term" ng-model="gpacalc.term" required ng-options="t for t in terms"></select>
 				</div>
 				<div>
 					<label for="year">Year:</label>
-					<input type="text" id="year" placeholder="YYYY" required ng-pattern="/^\d{4}$/" ng-model="course.year"/>
+					<input type="text" id="year" placeholder="YYYY" required ng-pattern="/^\d{4}$/" ng-model="gpacalc.year"/>
 				</div>
 				<div>
 					<label for="grade">Grade:</label>
-					<input type="text" id="grade" required ng-model="course.grade"/>
+					<input type="text" id="grade" required ng-model="gpacalc.grade"/>
 				</div>
 				<div>
 					<label for="units">Units:</label>
-					<input type="text" id="units" required="" ng-model="course.units"/>
+					<input type="text" id="units" required="" ng-model="gpacalc.units"/>
 				</div>
 				<div>
-					<button type="button" class="btn" ng-disabled="gpaCalcForm.$invalid" ng-click="addClass(course, gpaCalcForm)">Add Class</button>
+					<button type="button" class="btn" ng-disabled="gpaCalcForm.$invalid" ng-click="addClass(gpacalc, gpaCalcForm)">Add Class</button>
 				</div>
 			</div>
 		</div>
@@ -85,7 +85,7 @@
 					<td>{{course.grade}}</td>
 					<td>{{course.units}}</td>
 					<td>{{course.adjustedUnits() | number: 2}}</td>
-					<td>{{bio.school}}</td>
+					<td>{{course.school}}</td>
 				</tr>
 			</table>
 

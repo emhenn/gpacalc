@@ -10,6 +10,7 @@ angular
 			this.year = newcourse.year;
 			this.grade = newcourse.grade;
 			this.units = newcourse.units;
+			this.school = newcourse.school.toString();
 			this.adjustedUnits = function () {
 				return this.units * (this.schedule === 'semester' ? 1 : 2 / 3);
 			};
@@ -49,8 +50,8 @@ angular
 				return 0;
 			};
 		}
-		$scope.courses = [];
 		$scope.terms = [ 'Winter', 'Spring', 'Summer', 'Fall' ];
+		$scope.courses = [];
 		$scope.addClass = function (course, courseForm) {
 			if (courseForm.$invalid) {
 				return;
