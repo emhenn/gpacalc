@@ -60,6 +60,9 @@ angular
 				return;
 			}
 			$scope.courses.push(new Course(course));
+			course.grade = '';
+			course.units = '';
+			document.getElementById('grade').focus();
 		};
 		$scope.deleteClass = function (course) {
 			$scope.courses.splice($scope.courses.indexOf(course), 1);
