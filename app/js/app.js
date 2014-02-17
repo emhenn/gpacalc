@@ -70,8 +70,9 @@ angular
 			}, 0);
 		};
 		$scope.gradePointAverage = function () {
-			return _.reduce($scope.courses, function (memo, crse) {
+			var gradepoints = _.reduce($scope.courses, function (memo, crse) {
 				return memo + crse.gradePoints();
-			}, 0) / $scope.adjustedUnitTotal();
+			}, 0);
+			return Math.floor(gradepoints * 1000 / $scope.adjustedUnitTotal()) / 1000;
 		};
 	});
