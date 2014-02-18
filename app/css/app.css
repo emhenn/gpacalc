@@ -20,17 +20,19 @@
 }
 
 /*     bio      */
-#bio label {
-	width: 150px;
-}
 
 #bio input {
 	margin-right: 40px;
 	width: 250px;
 }
 
-#bio .row > div {
+.stack {
 	display: inline-block;
+}
+
+.widelabel {
+	display: inline-block;
+	width: 150px;
 }
 
 /*     validation     */

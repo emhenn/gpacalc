@@ -67,6 +67,9 @@ angular
 		$scope.deleteClass = function (course) {
 			$scope.courses.splice($scope.courses.indexOf(course), 1);
 		};
+		$scope.noClasses = function () {
+			return $scope.courses.length === 0;
+		};
 		$scope.adjustedUnitTotal = function () {
 			return _.reduce($scope.courses, function (memo, crse) {
 				return memo + crse.adjustedUnits();

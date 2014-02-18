@@ -7,72 +7,71 @@
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
 </head>
-<body>
+<body ng-cloak>
 	<div class="container" ng-controller="gpaCalcController">
-		<ul class="menu">
-			<li><button type="button" class="btn">Print</button></li>
-			<li><button type="button" class="btn">Delete</button></li>
-		</ul>
 
 		<h1>GPA Calculator - Angular Demo</h1>
 
+		<hr/>
+
 		<form name="gpaCalcForm">
 
-		<div id="bio">
-			<div class="row">
-				<div>
-					<label for="name">Applicant Name:</label>
+		<div id="bio" class="panel">
+			<div>
+				<div class="stack">
+					<label for="name" class="widelabel">Applicant Name:</label>
 					<input type="text" id="name" placeholder="Name" ng-model="gpacalc.name"/>
 				</div>
-				<div>
-					<label for="school">School Name:</label>
+				<div class="stack">
+					<label for="school" class="widelabel">School Name:</label>
 					<input type="text" id="school" placeholder="School" ng-model="gpacalc.school"/>
 				</div>
 			</div>
-			<div class="row">
-				<div>
-					<label for="degree">Degree Program:</label>
+			<div>
+				<div class="stack">
+					<label for="degree" class="widelabel">Degree Program:</label>
 					<input type="text" id="degree" placeholder="Degree" ng-model="gpacalc.degree"/>
 				</div>
-				<div>
-					<label for="major">Major:</label>
+				<div class="stack">
+					<label for="major" class="widelabel">Major:</label>
 					<input type="text" id="major" placeholder="Major" ng-model="gpacalc.major"/>
 				</div>
 			</div>
 		</div>
 
-		<div id="new-course">
-			<div class="row">
+		<div id="new-course" class="panel">
+			<div>
 				<div>
-					<label>Schedule:</label>
+					<label class="widelabel">Schedule:</label>
 					<input type="radio" name="schedule" id="semester" value="semester" required ng-model="gpacalc.schedule" />
 					<label for="semester">Semester</label>
 					<input type="radio" name="schedule" id="quarter" value="quarter" required ng-model="gpacalc.schedule" />
 					<label for="quarter">Quarter</label>
 				</div>
 				<div>
-					<label for="term">Term:</label>
+					<label for="term" class="widelabel">Term:</label>
 					<select id="term" ng-model="gpacalc.term" required ng-options="t for t in terms"></select>
 				</div>
 				<div>
-					<label for="year">Year:</label>
+					<label for="year" class="widelabel">Year:</label>
 					<input type="text" id="year" placeholder="YYYY" required ng-pattern="/^\d{4}$/" ng-model="gpacalc.year"/>
 				</div>
 				<div>
-					<label for="grade">Grade:</label>
+					<label for="grade" class="widelabel">Grade:</label>
 					<input type="text" id="grade" required ng-model="gpacalc.grade"/>
 				</div>
 				<div>
-					<label for="units">Units:</label>
+					<label for="units" class="widelabel">Units:</label>
 					<input type="text" id="units" required="" ng-model="gpacalc.units"/>
 				</div>
 				<div>
+					<span class="widelabel"></span>
 					<button type="button" class="btn" ng-disabled="gpaCalcForm.$invalid" ng-click="addClass(gpacalc, gpaCalcForm)">Add Class</button>
 				</div>
 			</div>
 		</div>
 		
-		<div id="courses">
+		<div id="courses" class="panel" ng-hide="noClasses()">
 			<table>
 				<tr>
 					<th></th><th>Year</th><th>Term</th><th>Schedule</th><th>Grade</th><th>Units</th><th>Adj Units</th><th>School</th>
@@ -89,9 +88,18 @@
 				</tr>
 			</table>
 
-			adjusted unit total: {{ adjustedUnitTotal() | number: 3 }} <br/>
-			grade point average: {{ gradePointAverage() | number: 3 }}
+			<div class="totals">
+				adjusted unit total: {{ adjustedUnitTotal() | number: 3 }}
+			</div>
+			<div class="totals">
+				grade point average: {{ gradePointAverage() | number: 3 }}
+			</div>
+
+			<button type="button" class="btn">Print</button>
+			<button type="button" class="btn">Delete</button>
+
 		</div>
+
 
 		</form>
 
