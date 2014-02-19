@@ -1,9 +1,10 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular
-	.module('gpaCalc', [])
+var gpaCalcApp = angular.module('gpaCalc', [])
 	.controller('gpaCalcController', function GpaCalcController($scope) {
+		var termLabels = { 1: 'Winter', 2: 'Spring', 3: 'Summer', 4: 'Fall' };
+
 		function Course(newcourse) {
 			this.schedule = newcourse.schedule;
 			this.term = newcourse.term;
@@ -11,6 +12,9 @@ angular
 			this.grade = newcourse.grade.toUpperCase();
 			this.units = newcourse.units;
 			this.school = newcourse.school === undefined ? '' : newcourse.school.toString();
+			this.termLabel = function () {
+				return termLabels[this.term];
+			};
 			this.adjustedUnits = function () {
 				return this.units * (this.schedule === 'semester' ? 1 : 2 / 3);
 			};
@@ -53,7 +57,7 @@ angular
 				return this.gradeValue() * this.adjustedUnits();
 			};
 		}
-		$scope.terms = [ 'Winter', 'Spring', 'Summer', 'Fall' ];
+		$scope.terms = termLabels;
 		$scope.courses = [];
 		$scope.addClass = function (course, courseForm) {
 			if (courseForm.$invalid) {

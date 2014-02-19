@@ -54,7 +54,7 @@
 				</div>
 				<div>
 					<label for="term" class="widelabel">Term:</label>
-					<select id="term" ng-model="gpacalc.term" required ng-options="t for t in terms"></select>
+					<select id="term" ng-model="gpacalc.term" required ng-options="k as v for (k,v) in terms"></select>
 				</div>
 				<div>
 					<label for="year" class="widelabel">Year:</label>
@@ -83,7 +83,7 @@
 				<tr ng-repeat="course in courses | orderBy:['year', 'term', 'schedule']">
 					<td><button type="button" class="btn" ng-click="deleteClass(course)">Delete</button></td>
 					<td class="sm">{{course.year}}</td>
-					<td class="bg">{{course.term}}</td>
+					<td class="bg">{{course.termLabel() }}</td>
 					<td class="bg">{{course.schedule}}</td>
 					<td class="sm">{{course.grade}}</td>
 					<td class="sm">{{course.units}}</td>
@@ -111,9 +111,9 @@
 		<!-- In production use:
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 		-->
-		<script src="lib/angular/angular.js"></script>
-		<script src="lib/underscore-min.js"></script>
-		<script src="js/app.js"></script>
+		<script type="text/javascript" src="lib/angular/angular.js"></script>
+		<script type="text/javascript" src="lib/underscore-min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
 	</div>
 </body>
 </html>
