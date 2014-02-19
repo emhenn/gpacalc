@@ -80,6 +80,20 @@ span.together {
 	white-space: pre;*/
 }
 
+.hdr {
+	font-weight: bold;
+	display: inline-block;
+}
+
+.dat {
+	display: inline-block;
+}
+
+.subtot {
+	font-weight: bold;
+}
+
+
 /*     validation     */
 
 input.ng-invalid.ng-dirty {

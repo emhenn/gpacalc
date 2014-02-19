@@ -83,7 +83,7 @@
 				<tr ng-repeat="course in courses | orderBy:['year', 'term', 'schedule']">
 					<td><button type="button" class="btn" ng-click="deleteClass(course)">Delete</button></td>
 					<td class="sm">{{course.year}}</td>
-					<td class="bg">{{course.termLabel() }}</td>
+					<td class="bg">{{course.termLabel()}}</td>
 					<td class="bg">{{course.schedule}}</td>
 					<td class="sm">{{course.grade}}</td>
 					<td class="sm">{{course.adjustedUnits() | number: 2}}</td>
@@ -118,12 +118,12 @@
 			</div>
 			<div class="reportsub" ng-repeat="(year, courses) in reportByYear">
 				<div class="reportrow" ng-repeat="course in courses">
-					<span class="dat sm">{{year}}</span>
-					<span class="dat bg">{{term}}</span>
-					<span class="dat bg">{{schedule}}</span>
-					<span class="dat sm">{{grade}}</span>
-					<span class="dat sm">{{units}}</span>
-					<span class="dat bg">{{school}}</span>
+					<span class="dat sm">{{ course.year }}</span>
+					<span class="dat bg">{{ course.termLabel() }}</span>
+					<span class="dat bg">{{ course.schedule }}</span>
+					<span class="dat sm">{{ course.grade }}</span>
+					<span class="dat sm">{{ course.adjustedUnits() | number: 2 }}</span>
+					<span class="dat bg">{{ course.school }}</span>
 				</div>
 				<span class="subtot">{{year}} Totals</span>
 			</div>
