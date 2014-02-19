@@ -44,9 +44,9 @@
 				<div>
 					<label class="widelabel">Schedule:</label>
 					<input type="radio" name="schedule" id="semester" value="semester" required ng-model="gpacalc.schedule" />
-					<label for="semester">Semester</label>
+					<label for="semester" class="sched-label">Semester</label>
 					<input type="radio" name="schedule" id="quarter" value="quarter" required ng-model="gpacalc.schedule" />
-					<label for="quarter">Quarter</label>
+					<label for="quarter" class="sched-label">Quarter</label>
 				</div>
 				<div>
 					<label for="term" class="widelabel">Term:</label>
@@ -54,15 +54,15 @@
 				</div>
 				<div>
 					<label for="year" class="widelabel">Year:</label>
-					<input type="text" id="year" placeholder="YYYY" required ng-pattern="/^\d{4}$/" ng-model="gpacalc.year"/>
+					<input type="text" class="short" id="year" placeholder="YYYY" required ng-pattern="/^\d{4}$/" ng-model="gpacalc.year"/>
 				</div>
 				<div>
 					<label for="grade" class="widelabel">Grade:</label>
-					<input type="text" id="grade" required ng-model="gpacalc.grade"/>
+					<input type="text" class="short" id="grade" required ng-pattern="/^(a[-+b]?|b[-+c]?|c[-+d]?|d[-+]?|f)$/i" ng-model="gpacalc.grade"/>
 				</div>
 				<div>
 					<label for="units" class="widelabel">Units:</label>
-					<input type="text" id="units" required="" ng-model="gpacalc.units"/>
+					<input type="text" class="short" id="units" required ng-pattern="/^\d+$/" ng-model="gpacalc.units"/>
 				</div>
 				<div>
 					<span class="widelabel"></span>
@@ -99,7 +99,6 @@
 			<button type="button" class="btn">Delete</button>
 
 		</div>
-
 
 		</form>
 

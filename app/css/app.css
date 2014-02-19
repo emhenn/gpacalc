@@ -35,6 +35,17 @@
 	width: 150px;
 }
 
+/*     new-course     */
+
+.sched-label {
+	font-weight: normal;
+	width: 70px;
+}
+
+.short {
+	width: 75px;
+}
+
 /*     validation     */
 
 input.ng-invalid.ng-dirty {
