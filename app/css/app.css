@@ -46,6 +46,29 @@
 	width: 75px;
 }
 
+/*     courses        */
+
+#courses > table {
+	border-collapse: collapse;
+}
+
+#courses td {
+	padding: 3px 30px 3px 0;
+}
+
+#courses td.sm {
+	width: 50px;
+}
+
+#courses td.bg {
+	width: 80px;
+}
+
+.totals > label {
+	font-weight: bold;
+	width: 200px;
+}
+
 /*     validation     */
 
 input.ng-invalid.ng-dirty {

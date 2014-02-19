@@ -78,21 +78,23 @@
 				</tr>
 				<tr ng-repeat="course in courses | orderBy:['year', 'term', 'schedule']">
 					<td><button type="button" class="btn" ng-click="deleteClass(course)">Delete</button></td>
-					<td>{{course.year}}</td>
-					<td>{{course.term}}</td>
-					<td>{{course.schedule}}</td>
-					<td>{{course.grade}}</td>
-					<td>{{course.units}}</td>
-					<td>{{course.adjustedUnits() | number: 2}}</td>
-					<td>{{course.school}}</td>
+					<td class="sm">{{course.year}}</td>
+					<td class="bg">{{course.term}}</td>
+					<td class="bg">{{course.schedule}}</td>
+					<td class="sm">{{course.grade}}</td>
+					<td class="sm">{{course.units}}</td>
+					<td class="sm">{{course.adjustedUnits() | number: 2}}</td>
+					<td class="sm">{{course.school}}</td>
 				</tr>
 			</table>
 
 			<div class="totals">
-				adjusted unit total: {{ adjustedUnitTotal() | number: 3 }}
+				<label>adjusted unit total:</label>
+				{{ adjustedUnitTotal() | number: 3 }}
 			</div>
 			<div class="totals">
-				grade point average: {{ gradePointAverage() | number: 3 }}
+				<label>grade point average:</label>
+				{{ gradePointAverage() | number: 3 }}
 			</div>
 
 			<button type="button" class="btn">Print</button>
