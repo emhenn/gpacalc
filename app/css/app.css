@@ -60,11 +60,11 @@ span.together {
 	padding: 3px 30px 3px 0;
 }
 
-#courses td.sm {
+#courses td.sm, .sm {
 	width: 50px;
 }
 
-#courses td.bg {
+#courses td.bg, .bg {
 	width: 80px;
 }
 
@@ -76,8 +76,8 @@ span.together {
 /*     report         */
 
 #report {
-	font-family: monospace;
-	white-space: pre;
+	/*font-family: monospace;
+	white-space: pre;*/
 }
 
 /*     validation     */

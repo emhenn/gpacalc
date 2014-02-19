@@ -108,6 +108,25 @@
 		<div id="report" class="panel" ng-hide="untilPrinted()">
 			<div id="contents">
 			</div>
+			<div class="reporthead">
+				<span class="hdr sm">Year</span>
+				<span class="hdr bg">Term</span>
+				<span class="hdr bg">Schedule</span>
+				<span class="hdr sm">Grade</span>
+				<span class="hdr sm">Units</span>
+				<span class="hdr bg">School</span>
+			</div>
+			<div class="reportsub" ng-repeat="(year, courses) in reportByYear">
+				<div class="reportrow" ng-repeat="course in courses">
+					<span class="dat sm">{{year}}</span>
+					<span class="dat bg">{{term}}</span>
+					<span class="dat bg">{{schedule}}</span>
+					<span class="dat sm">{{grade}}</span>
+					<span class="dat sm">{{units}}</span>
+					<span class="dat bg">{{school}}</span>
+				</div>
+				<span class="subtot">{{year}} Totals</span>
+			</div>
 		</div>
 
 		</form>
