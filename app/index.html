@@ -78,7 +78,7 @@
 		<div id="courses" class="panel" ng-hide="noClasses()">
 			<table>
 				<tr>
-					<th></th><th>Year</th><th>Term</th><th>Schedule</th><th>Grade</th><th>Units</th><th>Adj Units</th><th>School</th>
+					<th></th><th>Year</th><th>Term</th><th>Schedule</th><th>Grade</th><th>Units</th><th>School</th>
 				</tr>
 				<tr ng-repeat="course in courses | orderBy:['year', 'term', 'schedule']">
 					<td><button type="button" class="btn" ng-click="deleteClass(course)">Delete</button></td>
@@ -86,7 +86,6 @@
 					<td class="bg">{{course.termLabel() }}</td>
 					<td class="bg">{{course.schedule}}</td>
 					<td class="sm">{{course.grade}}</td>
-					<td class="sm">{{course.units}}</td>
 					<td class="sm">{{course.adjustedUnits() | number: 2}}</td>
 					<td class="sm">{{course.school}}</td>
 				</tr>
