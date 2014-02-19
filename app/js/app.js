@@ -88,4 +88,9 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			}, 0);
 			return truncate(gradepoints1K / 1000 / $scope.adjustedUnitTotal());
 		};
+		$scope.clearAll = function () {
+			$scope.gpacalc = {};
+			$scope.courses.length = 0;
+			document.getElementById('name').focus();
+		};
 	});
