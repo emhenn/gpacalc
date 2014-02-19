@@ -74,19 +74,19 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 		$scope.noClasses = function () {
 			return $scope.courses.length === 0;
 		};
-		$scope.adjustedUnitTotal = function () {
-			return _.reduce($scope.courses, function (memo, crse) {
+		$scope.adjustedUnitTotal = function (courses) {
+			return _.reduce(courses, function (memo, crse) {
 				return memo + crse.adjustedUnits();
 			}, 0);
 		};
 		function truncate(num) {
 			return Math.floor(num * 1000) / 1000;
 		}
-		$scope.gradePointAverage = function () {
-			var gradepoints1K = _.reduce($scope.courses, function (memo, crse) {
+		$scope.gradePointAverage = function (courses) {
+			var gradepoints1K = _.reduce(courses, function (memo, crse) {
 				return memo + crse.gradePoints() * 1000;
 			}, 0);
-			return truncate(gradepoints1K / 1000 / $scope.adjustedUnitTotal());
+			return truncate(gradepoints1K / 1000 / $scope.adjustedUnitTotal(courses));
 		};
 		$scope.clearAll = function () {
 			$scope.gpacalc = {};

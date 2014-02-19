@@ -93,11 +93,11 @@
 
 			<div class="totals">
 				<label>adjusted unit total:</label>
-				{{ adjustedUnitTotal() | number: 3 }}
+				{{ adjustedUnitTotal(courses) | number: 3 }}
 			</div>
 			<div class="totals">
 				<label>grade point average:</label>
-				{{ gradePointAverage() | number: 3 }}
+				{{ gradePointAverage(courses) | number: 3 }}
 			</div>
 
 			<button type="button" class="btn" ng-click="print()">Print</button>
@@ -106,8 +106,7 @@
 		</div>
 
 		<div id="report" class="panel" ng-hide="untilPrinted()">
-			<div id="contents">
-			</div>
+			<!-- Report Header -->
 			<div class="reporthead">
 				<span class="hdr sm">Year</span>
 				<span class="hdr bg">Term</span>
@@ -116,8 +115,9 @@
 				<span class="hdr sm">Units</span>
 				<span class="hdr bg">School</span>
 			</div>
-			<div class="reportsub" ng-repeat="(year, courses) in reportByYear">
-				<div class="reportrow" ng-repeat="course in courses">
+			<div class="reportsub" ng-repeat="(year, yearCourses) in reportByYear">
+				<!-- Course Per Year -->
+				<div class="reportrow" ng-repeat="course in yearCourses">
 					<span class="dat sm">{{ course.year }}</span>
 					<span class="dat bg">{{ course.termLabel() }}</span>
 					<span class="dat bg">{{ course.schedule }}</span>
@@ -125,7 +125,15 @@
 					<span class="dat sm">{{ course.adjustedUnits() | number: 2 }}</span>
 					<span class="dat bg">{{ course.school }}</span>
 				</div>
-				<span class="subtot">{{year}} Totals</span>
+				<!-- Yearly Subtotals -->
+				<div class="subtot">
+					<span class="dat sm">{{year}}</span>
+					<span class="dat bg">Subtotal</span>
+					<span class="dat bg"></span>
+					<span class="dat sm">{{ gradePointAverage(yearCourses) | number: 3 }}</span>
+					<span class="dat sm">{{ adjustedUnitTotal(yearCourses) | number: 3 }}</span>
+					<span class="dat bg"></span>
+				</div>
 			</div>
 		</div>
 
