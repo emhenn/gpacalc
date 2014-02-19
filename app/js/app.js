@@ -96,4 +96,8 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 		$scope.untilPrinted = function () {
 			return false;
 		};
+		$scope.print = function () {
+			var report = _.groupBy($scope.courses, 'year');
+			document.getElementById('contents').innerHTML = angular.toJson(report, true);
+		};
 	});

@@ -73,6 +73,13 @@ span.together {
 	width: 200px;
 }
 
+/*     report         */
+
+#report {
+	font-family: monospace;
+	white-space: pre;
+}
+
 /*     validation     */
 
 input.ng-invalid.ng-dirty {

@@ -100,14 +100,13 @@
 				{{ gradePointAverage() | number: 3 }}
 			</div>
 
-			<button type="button" class="btn">Print</button>
+			<button type="button" class="btn" ng-click="print()">Print</button>
 			<button type="button" class="btn" ng-click="clearAll()">Clear All</button>
 
 		</div>
 
 		<div id="report" class="panel" ng-hide="untilPrinted()">
 			<div id="contents">
-				<h2>Report</h2>
 			</div>
 		</div>
 
