@@ -43,10 +43,14 @@
 			<div>
 				<div>
 					<label class="widelabel">Schedule:</label>
-					<input type="radio" name="schedule" id="semester" value="semester" required ng-model="gpacalc.schedule" />
-					<label for="semester" class="sched-label">Semester</label>
-					<input type="radio" name="schedule" id="quarter" value="quarter" required ng-model="gpacalc.schedule" />
-					<label for="quarter" class="sched-label">Quarter</label>
+					<span class="together">
+						<input type="radio" name="schedule" id="semester" value="semester" required ng-model="gpacalc.schedule" />
+						<label for="semester" class="sched-label">Semester</label>
+					</span>
+					<span class="together">
+						<input type="radio" name="schedule" id="quarter" value="quarter" required ng-model="gpacalc.schedule" />
+						<label for="quarter" class="sched-label">Quarter</label>
+					</span>
 				</div>
 				<div>
 					<label for="term" class="widelabel">Term:</label>

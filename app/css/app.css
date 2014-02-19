@@ -46,6 +46,10 @@
 	width: 75px;
 }
 
+span.together {
+	display: inline-block;
+}
+
 /*     courses        */
 
 #courses > table {
