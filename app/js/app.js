@@ -93,4 +93,7 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			$scope.courses.length = 0;
 			document.getElementById('name').focus();
 		};
+		$scope.untilPrinted = function () {
+			return false;
+		};
 	});
