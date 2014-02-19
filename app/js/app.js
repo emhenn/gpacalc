@@ -97,7 +97,9 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			return false;
 		};
 		$scope.print = function () {
-			var report = _.groupBy($scope.courses, 'year');
-			document.getElementById('contents').innerHTML = angular.toJson(report, true);
+			var byYear = _.groupBy($scope.courses, 'year'),
+				byTerm = _.groupBy($scope.courses, function (c) { return c.year.toString() + c.term.toString()});
+
+			document.getElementById('contents').innerHTML = angular.toJson(byYear, true) + angular.toJson(byTerm, true);
 		};
 	});
