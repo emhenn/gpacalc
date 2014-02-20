@@ -27,4 +27,16 @@ describe('gpaCalcController', function () {
 		expect(scope.courses instanceof Array).toBe(true);
 		expect(scope.courses.length).toBe(0);
 	}));
+
+	it('should report noClasses is true when there are no courses', inject(function () {
+		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+		expect(scope.noClasses()).toBe(true);
+	}));
+
+	it('should report noClasses is false when there are courses', inject(function () {
+		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+			form = {};
+		scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
+		expect(scope.noClasses()).toBe(true);
+	}));
 });
