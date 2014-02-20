@@ -58,6 +58,10 @@ span.together {
 	display: inline-block;
 }
 
+.buttons {
+	padding: 10px 0;
+}
+
 /*   courses / report     */
 
 button.btn {

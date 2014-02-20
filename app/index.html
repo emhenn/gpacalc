@@ -68,7 +68,7 @@
 					<label for="units" class="widelabel">Units:</label>
 					<input type="text" class="short" id="units" required ng-pattern="/^\d+$/" ng-model="gpacalc.units"/>
 				</div>
-				<div>
+				<div class="buttons">
 					<button type="button" class="btn btn-default" ng-disabled="gpaCalcForm.$invalid" title="Add Course" ng-click="addClass(gpacalc, gpaCalcForm)">
 						<span class="glyphicon glyphicon-plus"></span> Add Course</button>
 					<button type="button" class="btn btn-default" ng-click="print()" title="Print">
@@ -82,11 +82,11 @@
 		<div id="courses" class="panel" ng-hide="noClasses()">
 
 			<div class="totals">
-				<label>adjusted unit total:</label>
+				<label>Adjusted Unit Total:</label>
 				{{ adjustedUnitTotal(courses) | number: 3 }}
 			</div>
 			<div class="totals">
-				<label>grade point average:</label>
+				<label>Grade Point Average:</label>
 				{{ gradePointAverage(courses) | number: 3 }}
 			</div>
 
