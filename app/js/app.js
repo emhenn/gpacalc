@@ -1,3 +1,4 @@
+/*jslint indent: 4, maxerr: 50, browser: true, devel: true, nomen: true, plusplus: true */
 'use strict';
 
 // Declare app level module which depends on filters, and services
@@ -97,8 +98,15 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			return false;
 		};
 		$scope.print = function () {
-			$scope.reportByYear = _.groupBy($scope.courses, 'year'),
-			$scope.reportByTerm = _.groupBy($scope.courses, function (c) { return c.year.toString() + c.term.toString()});
-			document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true) + angular.toJson($scope.reportByTerm, true);
+			var year, all, reportByYear = _.groupBy($scope.courses, 'year');
+			for (year in reportByYear) {
+				if (reportByYear.hasOwnProperty(year)) {
+					all = reportByYear[year];
+					reportByYear[year] = _.groupBy(all, 'term');
+					reportByYear[year].all = all;
+				}
+			}
+			$scope.reportByYear = reportByYear;
+			document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true);
 		};
 	});
