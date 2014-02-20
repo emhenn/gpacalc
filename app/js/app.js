@@ -99,6 +99,6 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 		$scope.print = function () {
 			$scope.reportByYear = _.groupBy($scope.courses, 'year'),
 			$scope.reportByTerm = _.groupBy($scope.courses, function (c) { return c.year.toString() + c.term.toString()});
-			//document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true) + angular.toJson($scope.reportByTerm, true);
+			document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true) + angular.toJson($scope.reportByTerm, true);
 		};
 	});

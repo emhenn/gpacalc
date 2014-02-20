@@ -106,6 +106,7 @@
 		</div>
 
 		<div id="report" class="panel" ng-hide="untilPrinted()">
+			<div id="contents"></div>
 			<!-- Report Header -->
 			<div class="reporthead">
 				<span class="hdr sm">Year</span>
@@ -116,6 +117,7 @@
 				<span class="hdr bg">School</span>
 			</div>
 			<div class="reportsub" ng-repeat="(year, yearCourses) in reportByYear">
+				<div class="reportsub" ng-repeat="">
 				<!-- Course Per Year -->
 				<div class="reportrow" ng-repeat="course in yearCourses">
 					<span class="dat sm">{{ course.year }}</span>

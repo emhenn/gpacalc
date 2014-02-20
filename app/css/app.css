@@ -75,9 +75,9 @@ span.together {
 
 /*     report         */
 
-#report {
-	/*font-family: monospace;
-	white-space: pre;*/
+#contents {
+	font-family: monospace;
+	white-space: pre;
 }
 
 .hdr {
