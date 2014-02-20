@@ -105,8 +105,7 @@
 
 		</div>
 
-		<div id="report" class="panel" ng-hide="untilPrinted()">
-			<div id="contents"></div>
+		<div id="report" class="panel">
 			<!-- Report Header -->
 			<div class="reporthead">
 				<span class="hdr sm">Year</span>
@@ -117,8 +116,9 @@
 				<span class="hdr bg">School</span>
 			</div>
 			<div class="reportsub" ng-repeat="(year, byTerm) in reportByYear">
+				<!-- Each Year - show each term followed by a subtotal row -->
 				<div class="reportsub" ng-repeat="(term, termCourses) in byTerm">
-					<!-- Course Per Term -->
+					<!-- Each Term  -->
 					<div class="reportrow" ng-repeat="course in termCourses" ng-if="term !== 'all'">
 						<span class="dat sm">{{ course.year }}</span>
 						<span class="dat bg">{{ course.termLabel() }}</span>
@@ -127,7 +127,7 @@
 						<span class="dat sm">{{ course.adjustedUnits() | number: 2 }}</span>
 						<span class="dat bg">{{ course.school }}</span>
 					</div>
-					<!-- Term Subtotals -->
+					<!-- Term and Year Subtotals -->
 					<div class="subtot">
 						<span class="dat sm">{{ year }}</span>
 						<span class="dat bg">{{ subtotalLabelForTerm(term) }}</span>

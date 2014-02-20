@@ -1,3 +1,16 @@
+/* printing - hide new course and courses sections */
+@media print {
+	#new-course, #courses {
+		display: none;
+	}
+}
+
+@media screen {
+	#report {
+		/*display: none;*/
+	}
+}
+
 /* app css stylesheet */
 
 .menu {

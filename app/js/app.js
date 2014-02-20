@@ -97,9 +97,6 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			$scope.courses.length = 0;
 			document.getElementById('name').focus();
 		};
-		$scope.untilPrinted = function () {
-			return false;
-		};
 		$scope.print = function () {
 			var year, all, reportByYear = _.groupBy($scope.courses, 'year');
 			for (year in reportByYear) {
@@ -110,7 +107,8 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 				}
 			}
 			$scope.reportByYear = reportByYear;
-			document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true);
+			window.print();
+			//document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true);
 		};
 		$scope.subtotalLabelForTerm = function (term) {
 			return term === 'all' ? 'Year' : $scope.termLabelFor(term);
