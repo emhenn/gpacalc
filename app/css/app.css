@@ -1,15 +1,10 @@
-/* printing - hide new course and courses sections */
+/* printing - hide new course section and all buttons */
 @media print {
-	#new-course, #courses {
+	#new-course, button.btn {
 		display: none;
 	}
 }
 
-@media screen {
-	#report {
-		/*display: none;*/
-	}
-}
 
 /* app css stylesheet */
 
@@ -63,34 +58,27 @@ span.together {
 	display: inline-block;
 }
 
-/*     courses        */
+/*   courses / report     */
 
-#courses > table {
-	border-collapse: collapse;
+button.btn {
+	padding: 3px 5px;
 }
 
-#courses td {
-	padding: 3px 30px 3px 0;
-}
-
-#courses td.sm, .sm {
+.sm {
 	width: 50px;
 }
 
-#courses td.bg, .bg {
+.bg {
 	width: 80px;
+}
+
+.ctr {
+	text-align: center;
 }
 
 .totals > label {
 	font-weight: bold;
 	width: 200px;
-}
-
-/*     report         */
-
-#contents {
-	font-family: monospace;
-	white-space: pre;
 }
 
 .hdr {

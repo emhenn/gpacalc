@@ -63,6 +63,17 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 		}
 		$scope.terms = termLabels;
 		$scope.courses = [];
+		function report() {
+			var year, all, reportByYear = _.groupBy($scope.courses, 'year');
+			for (year in reportByYear) {
+				if (reportByYear.hasOwnProperty(year)) {
+					all = reportByYear[year];
+					reportByYear[year] = _.groupBy(all, 'term');
+					reportByYear[year].all = all;
+				}
+			}
+			$scope.reportByYear = reportByYear;
+		}
 		$scope.addClass = function (course, courseForm) {
 			if (courseForm.$invalid) {
 				return;
@@ -71,9 +82,11 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			course.grade = '';
 			course.units = '';
 			document.getElementById('grade').focus();
+			report();
 		};
 		$scope.deleteClass = function (course) {
 			$scope.courses.splice($scope.courses.indexOf(course), 1);
+			report();
 		};
 		$scope.noClasses = function () {
 			return $scope.courses.length === 0;
@@ -96,17 +109,9 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			$scope.gpacalc = {};
 			$scope.courses.length = 0;
 			document.getElementById('name').focus();
+			report();
 		};
 		$scope.print = function () {
-			var year, all, reportByYear = _.groupBy($scope.courses, 'year');
-			for (year in reportByYear) {
-				if (reportByYear.hasOwnProperty(year)) {
-					all = reportByYear[year];
-					reportByYear[year] = _.groupBy(all, 'term');
-					reportByYear[year].all = all;
-				}
-			}
-			$scope.reportByYear = reportByYear;
 			window.print();
 			//document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true);
 		};
