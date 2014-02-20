@@ -5,6 +5,9 @@
 var gpaCalcApp = angular.module('gpaCalc', [])
 	.controller('gpaCalcController', function GpaCalcController($scope) {
 		var termLabels = { 1: 'Winter', 2: 'Spring', 3: 'Summer', 4: 'Fall' };
+		$scope.termLabelFor = function (term) {
+			return termLabels[term];
+		};
 
 		function Course(newcourse) {
 			this.schedule = newcourse.schedule;
@@ -14,7 +17,7 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			this.units = newcourse.units;
 			this.school = newcourse.school === undefined ? '' : newcourse.school.toString();
 			this.termLabel = function () {
-				return termLabels[this.term];
+				return $scope.termLabelFor(this.term);
 			};
 			this.adjustedUnits = function () {
 				return this.units * (this.schedule === 'semester' ? 1 : 2 / 3);
@@ -108,5 +111,8 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			}
 			$scope.reportByYear = reportByYear;
 			document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true);
+		};
+		$scope.subtotalLabelForTerm = function (term) {
+			return term === 'all' ? 'Year' : $scope.termLabelFor(term);
 		};
 	});

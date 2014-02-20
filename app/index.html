@@ -130,7 +130,7 @@
 					<!-- Term Subtotals -->
 					<div class="subtot">
 						<span class="dat sm">{{ year }}</span>
-						<span class="dat bg">{{ termLabel() }}</span>
+						<span class="dat bg">{{ subtotalLabelForTerm(term) }}</span>
 						<span class="dat bg">Subtotal</span>
 						<span class="dat sm">{{ gradePointAverage(termCourses) | number: 3 }}</span>
 						<span class="dat sm">{{ adjustedUnitTotal(termCourses) | number: 3 }}</span>
