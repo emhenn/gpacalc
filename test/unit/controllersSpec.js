@@ -13,7 +13,6 @@ describe('gpaCalcController', function () {
 		$controllerConstructor = $controller;
 	}));
 
-
 	it('should return correct term labels', inject(function () {
 		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
 		expect(scope.termLabelFor(1)).toBe('Winter');
@@ -22,4 +21,10 @@ describe('gpaCalcController', function () {
 		expect(scope.termLabelFor(4)).toBe('Fall');
 	}));
 
+	it('should start with empty array of courses', inject(function () {
+		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+		expect(scope.courses).toBeDefined();
+		expect(scope.courses instanceof Array).toBe(true);
+		expect(scope.courses.length).toBe(0);
+	}));
 });
