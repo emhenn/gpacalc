@@ -76,6 +76,10 @@ button.btn {
 	text-align: center;
 }
 
+.totals {
+	padding: 5px 0;
+}
+
 .totals > label {
 	font-weight: bold;
 	width: 200px;

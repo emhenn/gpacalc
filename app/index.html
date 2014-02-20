@@ -80,6 +80,16 @@
 		</div>
 		
 		<div id="courses" class="panel" ng-hide="noClasses()">
+
+			<div class="totals">
+				<label>adjusted unit total:</label>
+				{{ adjustedUnitTotal(courses) | number: 3 }}
+			</div>
+			<div class="totals">
+				<label>grade point average:</label>
+				{{ gradePointAverage(courses) | number: 3 }}
+			</div>
+
 			<!-- Report Header -->
 			<div class="reporthead">
 				<span class="hdr sm"></span>
@@ -118,14 +128,15 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="totals">
-				<label>adjusted unit total:</label>
-				{{ adjustedUnitTotal(courses) | number: 3 }}
-			</div>
-			<div class="totals">
-				<label>grade point average:</label>
-				{{ gradePointAverage(courses) | number: 3 }}
+			<!-- grand totals -->
+			<div class="subtot">
+				<span class="dat sm"></span>
+				<span class="dat sm">GPA /</span>
+				<span class="dat bg">Units</span>
+				<span class="dat bg">Overall</span>
+				<span class="dat sm">{{ gradePointAverage(courses) | number: 3 }}</span>
+				<span class="dat sm">{{ adjustedUnitTotal(courses) | number: 3 }}</span>
+				<span class="dat bg"></span>
 			</div>
 		</div>
 
