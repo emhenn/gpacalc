@@ -70,4 +70,40 @@ describe('gpaCalcController', function () {
 
 		expect(scope.noClasses()).toBe(true);
 	}));
+
+	describe('The adjustedUnitTotal function', function () {
+		it('should return zero when there are no courses', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+
+			expect(scope.adjustedUnitTotal(scope.courses)).toBe(0);
+		}));
+
+		it('should return non-adjusted Units when there is one semester course', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'semester', units: 3 }, form);
+
+			expect(scope.adjustedUnitTotal(scope.courses)).toBe(3);
+		}));
+
+		it('should return sum of non-adjusted Units when there are multiple semester courses', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'semester', units: 3 }, form);
+			scope.addClass({ schedule: 'semester', units: 3 }, form);
+
+			expect(scope.adjustedUnitTotal(scope.courses)).toBe(6);
+		}));
+
+		it('should return adjusted Units when there is one quarter course', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'quarter', units: 3 }, form);
+
+			expect(scope.adjustedUnitTotal(scope.courses)).toBe(2);
+		}));
+	});
 });
