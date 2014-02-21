@@ -20,7 +20,7 @@
 			<div>
 				<div class="stack">
 					<label for="name" class="widelabel">Applicant Name:</label>
-					<input type="text" id="name" placeholder="Name" ng-model="gpacalc.name"/>
+					<input type="text" id="name" placeholder="Name" ng-model="gpacalc.name" focus-me />
 				</div>
 				<div class="stack">
 					<label for="school" class="widelabel">School Name:</label>
@@ -62,7 +62,7 @@
 				</div>
 				<div>
 					<label for="grade" class="widelabel">Grade:</label>
-					<input type="text" class="short" id="grade" required ng-pattern="/^(a[-+b]?|b[-+c]?|c[-+d]?|d[-+]?|f)$/i" ng-model="gpacalc.grade"/>
+					<input type="text" class="short" id="grade" required ng-pattern="/^(a[-+b]?|b[-+c]?|c[-+d]?|d[-+]?|f)$/i" ng-model="gpacalc.grade" focus-me />
 				</div>
 				<div>
 					<label for="units" class="widelabel">Units:</label>
@@ -151,6 +151,7 @@
 		<script type="text/javascript" src="lib/angular/angular.js"></script>
 		<script type="text/javascript" src="lib/underscore-min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/directives.js"></script>
 	</div>
 </body>
 </html>

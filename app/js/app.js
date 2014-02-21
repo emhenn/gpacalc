@@ -81,7 +81,7 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			$scope.courses.push(new Course(course));
 			course.grade = '';
 			course.units = '';
-			document.getElementById('grade').focus();
+			$scope.focusMe = { grade: true };
 			report();
 		};
 		$scope.deleteClass = function (course) {
@@ -108,7 +108,7 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 		$scope.clearAll = function () {
 			$scope.gpacalc = {};
 			$scope.courses.length = 0;
-			document.getElementById('name').focus();
+			$scope.focusMe = { name: true };
 			report();
 		};
 		$scope.print = function () {
