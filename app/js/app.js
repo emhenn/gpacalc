@@ -7,7 +7,6 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 		$scope.termLabelFor = function (term) {
 			return gpaCore.termLabels[term];
 		};
-
 		$scope.terms = gpaCore.termLabels;
 		$scope.courses = [];
 		function report() {

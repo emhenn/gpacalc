@@ -26,7 +26,7 @@ var gpaCore = (function () {
 			this.schedule = newcourse.schedule;
 			this.term = newcourse.term;
 			this.year = newcourse.year;
-			this.grade = newcourse.grade.toUpperCase();
+			this.grade = newcourse.grade === undefined ? '' : newcourse.grade.toUpperCase();
 			this.units = newcourse.units;
 			this.school = newcourse.school === undefined ? '' : newcourse.school.toString();
 			this.termLabel = function () {

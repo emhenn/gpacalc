@@ -8,7 +8,8 @@ module.exports = function(config){
 	  'lib/underscore-min.js',
       '../test/lib/angular/angular-mocks.js',
       'js/**/*.js',
-      '../test/unit/controllersSpec.js'
+      '../test/unit/controllersSpec.js',
+      '../test/unit/coreSpec.js'
     ],
 
     exclude : [
