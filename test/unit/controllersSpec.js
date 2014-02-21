@@ -37,6 +37,6 @@ describe('gpaCalcController', function () {
 		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 			form = {};
 		scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
-		expect(scope.noClasses()).toBe(true);
+		expect(scope.noClasses()).toBe(false);
 	}));
 });
