@@ -33,10 +33,20 @@ describe('gpaCalcController', function () {
 		expect(scope.noClasses()).toBe(true);
 	}));
 
-	it('should report noClasses is false when there are courses', inject(function () {
+	it('should report noClasses is false when there is at least one course', inject(function () {
 		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 			form = {};
 		scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
 		expect(scope.noClasses()).toBe(false);
+	}));
+
+	it('should create a new Course when course is added', inject(function () {
+		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+			form = {};
+		scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
+		expect(scope.courses).toBeDefined();
+		expect(scope.courses instanceof Array).toBe(true);
+		expect(scope.courses.length).toBe(1);
+		expect(scope.courses[0] instanceof gpaCore.Course).toBe(true);
 	}));
 });
