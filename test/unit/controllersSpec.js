@@ -126,4 +126,41 @@ describe('gpaCalcController', function () {
 			expect(scope.adjustedUnitTotal(scope.courses)).toBe(5);
 		}));
 	});
+
+	describe('The gradePointAverage function', function () {
+		it('should return NaN when there are no courses (divide by zero)', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+
+			expect(isNaN(scope.gradePointAverage(scope.courses))).toBe(true);
+		}));
+
+		it('should return grade value when there is one semester course', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'semester', grade: 'a', units: 3 }, form);
+
+			expect(scope.gradePointAverage(scope.courses)).toBe(4);
+		}));
+
+		it('should return correct gpa for two courses with same number of units', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'semester', grade: 'a', units: 3 }, form);
+			scope.addClass({ schedule: 'semester', grade: 'b', units: 3 }, form);
+
+			expect(scope.gradePointAverage(scope.courses)).toBe(3.5);
+		}));
+
+		it('should return correct gpa for two courses with different number of units', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'semester', grade: 'a', units: 4 }, form);
+			scope.addClass({ schedule: 'semester', grade: 'd', units: 2 }, form);
+
+			expect(scope.gradePointAverage(scope.courses)).toBe(3);
+		}));
+	});
 });
