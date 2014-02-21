@@ -105,5 +105,25 @@ describe('gpaCalcController', function () {
 
 			expect(scope.adjustedUnitTotal(scope.courses)).toBe(2);
 		}));
+
+		it('should return sum of adjusted Units when there are multiple quarter courses', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'quarter', units: 3 }, form);
+			scope.addClass({ schedule: 'quarter', units: 3 }, form);
+
+			expect(scope.adjustedUnitTotal(scope.courses)).toBe(4);
+		}));
+
+		it('should return correct sum of all Units when there are quarter and semester courses', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'quarter', units: 3 }, form);
+			scope.addClass({ schedule: 'semester', units: 3 }, form);
+
+			expect(scope.adjustedUnitTotal(scope.courses)).toBe(5);
+		}));
 	});
 });
