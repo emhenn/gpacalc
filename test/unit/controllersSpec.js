@@ -49,4 +49,25 @@ describe('gpaCalcController', function () {
 		expect(scope.courses.length).toBe(1);
 		expect(scope.courses[0] instanceof gpaCore.Course).toBe(true);
 	}));
+
+	it('should reset grade, units and focus when course is added', inject(function () {
+		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+			form = {},
+			crse = { schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' };
+
+		scope.addClass(crse, form);
+
+		expect(crse.grade).toBe('');
+		expect(crse.units).toBe('');
+		expect(scope.focusMe.grade).toBe(true);
+	}));
+
+	it('should report noClasses when course is added then deleted', inject(function () {
+		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+			form = {};
+		scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
+		scope.deleteClass(scope.courses[0]);
+
+		expect(scope.noClasses()).toBe(true);
+	}));
 });
