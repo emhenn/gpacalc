@@ -195,22 +195,30 @@ describe('gpaCalcController', function () {
 
 		it('should truncate anything after 3 decimal places', inject(function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
-				form = {};
+				form = {}, gpa;
 
 			scope.addClass({ schedule: 'semester', grade: 'a-', units: 2 }, form);
 			scope.addClass({ schedule: 'semester', grade: 'ab', units: 1 }, form);
 
+			gpa = (3.67 * 2 + 3.5 * 1) / 3;
+			expect(gpa).toBeGreaterThan(3.613);
+			expect(gpa).toBeLessThan(3.614);
 			expect(scope.gradePointAverage(scope.courses)).toBe(3.613);
 		}));
 
 		it('should not round up even when 4th decimal place is large', inject(function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
-				form = {};
+				form = {}, gpa, gpacalc;
 
 			scope.addClass({ schedule: 'semester', grade: 'a-', units: 2 }, form);
 			scope.addClass({ schedule: 'semester', grade: 'ab', units: 4 }, form);
 
-			expect(scope.gradePointAverage(scope.courses)).toBe(3.556);
+			gpa = (3.67 * 2 + 3.5 * 4) / 6;
+			gpacalc = scope.gradePointAverage(scope.courses);
+			expect(gpa).toBeGreaterThan(3.556);
+			expect(gpa).toBeLessThan(3.557);
+			expect(gpa - gpacalc).toBeGreaterThan(0.0005);
+			expect(gpacalc).toBe(3.556);
 		}));
 	});
 
