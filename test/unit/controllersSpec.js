@@ -192,6 +192,26 @@ describe('gpaCalcController', function () {
 
 			expect(scope.gradePointAverage(scope.courses)).toBe(3);
 		}));
+
+		it('should truncate anything after 3 decimal places', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'semester', grade: 'a-', units: 2 }, form);
+			scope.addClass({ schedule: 'semester', grade: 'ab', units: 1 }, form);
+
+			expect(scope.gradePointAverage(scope.courses)).toBe(3.613);
+		}));
+
+		it('should not round up even when 4th decimal place is large', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+
+			scope.addClass({ schedule: 'semester', grade: 'a-', units: 2 }, form);
+			scope.addClass({ schedule: 'semester', grade: 'ab', units: 4 }, form);
+
+			expect(scope.gradePointAverage(scope.courses)).toBe(3.556);
+		}));
 	});
 
 	describe('The clearAll function', function () {
