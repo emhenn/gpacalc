@@ -28,48 +28,78 @@ describe('gpaCalcController', function () {
 		expect(scope.courses.length).toBe(0);
 	}));
 
-	it('should report noClasses is true when there are no courses', inject(function () {
-		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
-		expect(scope.noClasses()).toBe(true);
-	}));
+	describe('The noClasses() function', function () {
+		it('should report true when there are no courses', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+			expect(scope.noClasses()).toBe(true);
+		}));
 
-	it('should report noClasses is false when there is at least one course', inject(function () {
-		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
-			form = {};
-		scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
-		expect(scope.noClasses()).toBe(false);
-	}));
+		it('should report false when there is at least one course', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+			scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
+			expect(scope.noClasses()).toBe(false);
+		}));
+	});
 
-	it('should create a new Course when course is added', inject(function () {
-		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
-			form = {};
-		scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
-		expect(scope.courses).toBeDefined();
-		expect(scope.courses instanceof Array).toBe(true);
-		expect(scope.courses.length).toBe(1);
-		expect(scope.courses[0] instanceof gpaCore.Course).toBe(true);
-	}));
+	describe('The addClass() function', function () {
+		it('should create a new Course', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+			scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
+			expect(scope.courses).toBeDefined();
+			expect(scope.courses instanceof Array).toBe(true);
+			expect(scope.courses.length).toBe(1);
+			expect(scope.courses[0] instanceof gpaCore.Course).toBe(true);
+		}));
 
-	it('should reset grade, units and focus when course is added', inject(function () {
-		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
-			form = {},
-			crse = { schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' };
+		it('should reset grade and units', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {},
+				crse = { schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' };
 
-		scope.addClass(crse, form);
+			scope.addClass(crse, form);
 
-		expect(crse.grade).toBe('');
-		expect(crse.units).toBe('');
-		expect(scope.focusMe.grade).toBe(true);
-	}));
+			expect(crse.grade).toBe('');
+			expect(crse.units).toBe('');
+		}));
 
-	it('should report noClasses when course is added then deleted', inject(function () {
-		var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
-			form = {};
-		scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
-		scope.deleteClass(scope.courses[0]);
+		it('should focus on grade element', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {},
+				crse = { schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' };
 
-		expect(scope.noClasses()).toBe(true);
-	}));
+			scope.addClass(crse, form);
+
+			expect(scope.focusMe.grade).toBe(true);
+		}));
+	});
+
+	describe('The deleteClass() function', function () {
+		it('should leave courses empty when last course is deleted', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {};
+			scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
+			scope.deleteClass(scope.courses[0]);
+
+			expect(scope.courses.length).toBe(0);
+		}));
+
+		it('should delete specified course and leave others alone', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {},
+				course1 = { course: 1 },
+				course2 = { course: 2 },
+				course3 = { course: 3 };
+
+			scope.courses = [ course1, course2, course3 ];
+			scope.deleteClass(course2);
+
+			expect(scope.courses.length).toBe(2);
+			expect(scope.courses[0]).toBe(course1);
+			expect(scope.courses[1]).toBe(course3);
+		}));
+	});
 
 	describe('The adjustedUnitTotal function', function () {
 		it('should return zero when there are no courses', inject(function () {
