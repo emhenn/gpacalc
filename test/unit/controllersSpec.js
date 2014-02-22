@@ -163,4 +163,33 @@ describe('gpaCalcController', function () {
 			expect(scope.gradePointAverage(scope.courses)).toBe(3);
 		}));
 	});
+
+	describe('The clearAll function', function () {
+		it('should clear out the gpacalc object', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+
+			scope.gpacalc = { name: 'bob', school: 'u of me' };
+			scope.clearAll();
+
+			expect(scope.gpacalc.name).toBe(undefined);
+			expect(scope.gpacalc.school).toBe(undefined);
+		}));
+
+		it('should remove all courses', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+
+			scope.courses = [ { course: 1 }, { course: 2 }, { course: 3 } ];
+			scope.clearAll();
+
+			expect(scope.courses.length).toBe(0);
+		}));
+
+		it('should focus on name control', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+
+			scope.clearAll();
+
+			expect(scope.focusMe.name).toBe(true);
+		}));
+	});
 });
