@@ -222,4 +222,18 @@ describe('gpaCalcController', function () {
 			expect(scope.focusMe.name).toBe(true);
 		}));
 	});
+
+	describe('The subtotalLabelForTerm() function', function () {
+		it('should return "Year" for term "all"', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+
+			expect(scope.subtotalLabelForTerm('all')).toBe('Year');
+		}));
+
+		it('should return appropriate label for numeric term', inject(function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope });
+
+			expect(scope.subtotalLabelForTerm(2)).toBe('Spring');
+		}));
+	});
 });
