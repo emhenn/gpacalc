@@ -3,7 +3,7 @@
 
 // Declare app level module which depends on filters, and services
 var gpaCalcApp = angular.module('gpaCalc', [])
-	.controller('gpaCalcController', function GpaCalcController($scope) {
+	.controller('gpaCalcController', function GpaCalcController($scope, $window) {
 		$scope.termLabelFor = function (term) {
 			return gpaCore.termLabels[term];
 		};
@@ -58,8 +58,7 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			report();
 		};
 		$scope.print = function () {
-			window.print();
-			//document.getElementById('contents').innerHTML = angular.toJson($scope.reportByYear, true);
+			$window.print();
 		};
 		$scope.subtotalLabelForTerm = function (term) {
 			return term === 'all' ? 'Year' : $scope.termLabelFor(term);
