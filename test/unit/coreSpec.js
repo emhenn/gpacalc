@@ -46,19 +46,51 @@ describe('gpaCore.Course', function () {
 	}));
 
 	it('should return a correct termLabel for supplied term', inject(function () {
-		var suppliedValues = {
-			term: 1
-		}, course = new gpaCore.Course(suppliedValues);
+		var winterCourse = new gpaCore.Course({ term: 1 }),
+			springCourse = new gpaCore.Course({ term: 2 }),
+			summerCourse = new gpaCore.Course({ term: 3 }),
+			fallCourse = new gpaCore.Course({ term: 4 });
 
-		expect(course.termLabel()).toBe('Winter');
+		expect(winterCourse.termLabel()).toBe('Winter');
+		expect(springCourse.termLabel()).toBe('Spring');
+		expect(summerCourse.termLabel()).toBe('Summer');
+		expect(fallCourse.termLabel()).toBe('Fall');
 	}));
 
-	it('should return a correct gradevalue for supplied grade', inject(function () {
-		var suppliedValues = {
-			grade: 'bc'
-		}, course = new gpaCore.Course(suppliedValues);
+	it('should return a correct gradevalue for each supplied grade', inject(function () {
+		var gradeAPLUS = new gpaCore.Course({ grade: 'a+' }),
+			gradeA = new gpaCore.Course({ grade: 'a' }),
+			gradeAMINUS = new gpaCore.Course({ grade: 'a-' }),
+			gradeAB = new gpaCore.Course({ grade: 'ab' }),
+			gradeBPLUS = new gpaCore.Course({ grade: 'b+' }),
+			gradeB = new gpaCore.Course({ grade: 'b' }),
+			gradeBMINUS = new gpaCore.Course({ grade: 'b-' }),
+			gradeBC = new gpaCore.Course({ grade: 'bc' }),
+			gradeCPLUS = new gpaCore.Course({ grade: 'c+' }),
+			gradeC = new gpaCore.Course({ grade: 'c' }),
+			gradeCMINUS = new gpaCore.Course({ grade: 'c-' }),
+			gradeCD = new gpaCore.Course({ grade: 'cd' }),
+			gradeDPLUS = new gpaCore.Course({ grade: 'd+' }),
+			gradeD = new gpaCore.Course({ grade: 'd' }),
+			gradeDMINUS = new gpaCore.Course({ grade: 'd-' }),
+			gradeF = new gpaCore.Course({ grade: 'f' });
 
-		expect(course.gradeValue()).toBe(2.5);
+		expect(gradeAPLUS.gradeValue()).toBe(4.33);
+		expect(gradeA.gradeValue()).toBe(4.0);
+		expect(gradeAMINUS.gradeValue()).toBe(3.67);
+		expect(gradeAB.gradeValue()).toBe(3.5);
+		expect(gradeBPLUS.gradeValue()).toBe(3.33);
+		expect(gradeB.gradeValue()).toBe(3.0);
+		expect(gradeBMINUS.gradeValue()).toBe(2.67);
+		expect(gradeBC.gradeValue()).toBe(2.5);
+		expect(gradeCPLUS.gradeValue()).toBe(2.33);
+		expect(gradeC.gradeValue()).toBe(2.0);
+		expect(gradeCMINUS.gradeValue()).toBe(1.67);
+		expect(gradeCD.gradeValue()).toBe(1.5);
+		expect(gradeDPLUS.gradeValue()).toBe(1.33);
+		expect(gradeD.gradeValue()).toBe(1.0);
+		expect(gradeDMINUS.gradeValue()).toBe(0.67);
+		expect(gradeF.gradeValue()).toBe(0);
 	}));
 
 	it('should return unadjusted units for semester', inject(function () {
