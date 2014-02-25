@@ -9,7 +9,8 @@ module.exports = function(config){
       '../test/lib/angular/angular-mocks.js',
       'js/**/*.js',
       '../test/unit/controllersSpec.js',
-      '../test/unit/coreSpec.js'
+      '../test/unit/coreSpec.js',
+      '../test/unit/directivesSpec.js'
     ],
 
     exclude : [
