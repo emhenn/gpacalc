@@ -196,7 +196,8 @@ describe('gpaCalcController', function () {
 
 		it('should truncate anything after 3 decimal places', inject(function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
-				form = {}, gpa;
+				form = {},
+				gpa;
 
 			scope.addClass({ schedule: 'semester', grade: 'a-', units: 2 }, form);
 			scope.addClass({ schedule: 'semester', grade: 'ab', units: 1 }, form);
@@ -209,7 +210,9 @@ describe('gpaCalcController', function () {
 
 		it('should not round up even when 4th decimal place is large', inject(function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
-				form = {}, gpa, gpacalc;
+				form = {},
+				gpa,
+				gpacalc;
 
 			scope.addClass({ schedule: 'semester', grade: 'a-', units: 2 }, form);
 			scope.addClass({ schedule: 'semester', grade: 'ab', units: 4 }, form);
