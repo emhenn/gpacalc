@@ -4,13 +4,14 @@
 /* jasmine specs for controllers go here */
 
 describe('gpaCalcController', function () {
-	var scope, $controllerConstructor;
+	var scope, $controllerConstructor, core;
 
 	beforeEach(module('gpaCalc'));
 
-	beforeEach(inject(function ($controller, $rootScope) {
+	beforeEach(inject(function ($controller, $rootScope, gpaCore) {
 		scope = $rootScope.$new();
 		$controllerConstructor = $controller;
+		core = gpaCore;
 	}));
 
 	it('should return correct term labels', inject(function () {
@@ -50,7 +51,7 @@ describe('gpaCalcController', function () {
 			expect(scope.courses).toBeDefined();
 			expect(scope.courses instanceof Array).toBe(true);
 			expect(scope.courses.length).toBe(1);
-			expect(scope.courses[0] instanceof gpaCore.Course).toBe(true);
+			expect(scope.courses[0] instanceof core.Course).toBe(true);
 		}));
 
 		it('should reset grade and units', inject(function () {

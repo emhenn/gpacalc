@@ -1,10 +1,9 @@
-var gpaCore = (function () {
+gpaCalcApp.factory('gpaCore', function () {
 	'use strict';
 
-	return {
-		termLabels: { 1: 'Winter', 2: 'Spring', 3: 'Summer', 4: 'Fall' },
-		termMultiplier: { 'semester': 1, 'quarter': 2 / 3 },
-		gradeValues: {
+	var termLabels = { 1: 'Winter', 2: 'Spring', 3: 'Summer', 4: 'Fall' },
+		termMultiplier = { 'semester': 1, 'quarter': 2 / 3 },
+		gradeValues = {
 			'A+': 4.33,
 			'A':  4.0,
 			'A-': 3.67,
@@ -21,7 +20,10 @@ var gpaCore = (function () {
 			'D':  1.0,
 			'D-': 0.67,
 			'F':  0
-		},
+		};
+
+	return {
+		termLabels: termLabels,
 		Course: function (newcourse) {
 			this.schedule = newcourse.schedule;
 			this.term = newcourse.term;
@@ -30,17 +32,17 @@ var gpaCore = (function () {
 			this.units = newcourse.units;
 			this.school = newcourse.school === undefined ? '' : newcourse.school.toString();
 			this.termLabel = function () {
-				return gpaCore.termLabels[this.term];
+				return termLabels[this.term];
 			};
 			this.adjustedUnits = function () {
-				return this.units * gpaCore.termMultiplier[this.schedule];
+				return this.units * termMultiplier[this.schedule];
 			};
 			this.gradeValue = function () {
-				return gpaCore.gradeValues[this.grade] || 0;
+				return gradeValues[this.grade] || 0;
 			};
 			this.gradePoints = function () {
 				return this.gradeValue() * this.adjustedUnits();
 			};
 		}
 	};
-}());
+});

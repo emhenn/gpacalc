@@ -3,7 +3,7 @@
 
 // Declare app level module which depends on filters, and services
 var gpaCalcApp = angular.module('gpaCalc', [])
-	.controller('gpaCalcController', function GpaCalcController($scope, $window) {
+	.controller('gpaCalcController', function GpaCalcController($scope, $window, gpaCore) {
 		$scope.termLabelFor = function (term) {
 			return gpaCore.termLabels[term];
 		};
