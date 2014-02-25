@@ -1,38 +1,46 @@
-module.exports = function(config){
+'use strict';
+
+module.exports = function (config) {
     config.set({
-    basePath : '../app',
+		basePath : '../app',
 
-    files : [
-      'lib/angular/angular.js',
-      'lib/angular/angular-*.js',
-	  'lib/underscore-min.js',
-      '../test/lib/angular/angular-mocks.js',
-      'js/**/*.js',
-      '../test/unit/*.js'
-    ],
+		files : [
+			'lib/angular/angular.js',
+			'lib/angular/angular-*.js',
+			'lib/underscore-min.js',
+			'../test/lib/angular/angular-mocks.js',
+			'js/**/*.js',
+			'../test/unit/*.js'
+		],
 
-    exclude : [
-      'lib/angular/angular-loader.js',
-      'lib/angular/*.min.js',
-      'lib/angular/angular-scenario.js'
-    ],
+		exclude : [
+			'lib/angular/angular-loader.js',
+			'lib/angular/*.min.js',
+			'lib/angular/angular-scenario.js'
+		],
 
-    autoWatch : true,
+		autoWatch : true,
 
-    frameworks: ['jasmine'],
+		frameworks: ['jasmine'],
 
-    browsers : ['Chrome'],
+		browsers : ['Chrome'],
 
-    plugins : [
-            'karma-junit-reporter',
-            'karma-chrome-launcher',
-            'karma-firefox-launcher',
-            'karma-jasmine'
-            ],
+		singleRun : false,
 
-    junitReporter : {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
+		proxies: {
+			'/': 'http://localhost:8001'
+		},
 
-})}
+		plugins : [
+			'karma-junit-reporter',
+			'karma-chrome-launcher',
+			'karma-firefox-launcher',
+			'karma-jasmine'
+		],
+
+		junitReporter : {
+			outputFile: 'test_out/unit.xml',
+			suite: 'unit'
+		}
+	});
+};
