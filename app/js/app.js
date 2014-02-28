@@ -20,8 +20,8 @@ var gpaCalcApp = angular.module('gpaCalc', [])
 			}
 			$scope.reportByYear = reportByYear;
 		}
-		$scope.addClass = function (course, courseForm) {
-			if (courseForm.$invalid) {
+		$scope.addClass = function (course) {
+			if ($scope.gpaCalcForm.$invalid) {
 				return;
 			}
 			$scope.courses.push(new gpaCore.Course(course));

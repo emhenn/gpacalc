@@ -38,6 +38,8 @@ describe('gpaCalcController', function () {
 		it('should report false when there is at least one course', inject(function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
+
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
 			expect(scope.noClasses()).toBe(false);
 		}));
@@ -47,6 +49,8 @@ describe('gpaCalcController', function () {
 		it('should create a new Course', inject(function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
+
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
 			expect(scope.courses).toBeDefined();
 			expect(scope.courses instanceof Array).toBe(true);
@@ -59,6 +63,7 @@ describe('gpaCalcController', function () {
 				form = {},
 				crse = { schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' };
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass(crse, form);
 
 			expect(crse.grade).toBe('');
@@ -70,16 +75,30 @@ describe('gpaCalcController', function () {
 				form = {},
 				crse = { schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' };
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass(crse, form);
 
 			expect(scope.focusMe.grade).toBe(true);
 		}));
+
+		it('should not add class when form is invalid', function () {
+			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
+				form = {},
+				crse = { schedule: 'a', year: 1, grade: 'a+', units: 1, school: 'c' };	// term missing
+
+			scope.gpaCalcForm = { $invalid: true };
+			scope.addClass(crse);
+
+			expect(scope.courses.length).toBe(0);
+		});
 	});
 
 	describe('The deleteClass() function', function () {
 		it('should leave courses empty when last course is deleted', inject(function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
+
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'a', term: 'b', year: 1, grade: 'a+', units: 1, school: 'c' }, form);
 			scope.deleteClass(scope.courses[0]);
 
@@ -113,6 +132,7 @@ describe('gpaCalcController', function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'semester', units: 3 }, form);
 
 			expect(scope.adjustedUnitTotal(scope.courses)).toBe(3);
@@ -122,6 +142,7 @@ describe('gpaCalcController', function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'semester', units: 3 }, form);
 			scope.addClass({ schedule: 'semester', units: 3 }, form);
 
@@ -132,6 +153,7 @@ describe('gpaCalcController', function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'quarter', units: 3 }, form);
 
 			expect(scope.adjustedUnitTotal(scope.courses)).toBe(2);
@@ -141,6 +163,7 @@ describe('gpaCalcController', function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'quarter', units: 3 }, form);
 			scope.addClass({ schedule: 'quarter', units: 3 }, form);
 
@@ -151,6 +174,7 @@ describe('gpaCalcController', function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'quarter', units: 3 }, form);
 			scope.addClass({ schedule: 'semester', units: 3 }, form);
 
@@ -169,6 +193,7 @@ describe('gpaCalcController', function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'semester', grade: 'a', units: 3 }, form);
 
 			expect(scope.gradePointAverage(scope.courses)).toBe(4);
@@ -178,6 +203,7 @@ describe('gpaCalcController', function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'semester', grade: 'a', units: 3 }, form);
 			scope.addClass({ schedule: 'semester', grade: 'b', units: 3 }, form);
 
@@ -188,6 +214,7 @@ describe('gpaCalcController', function () {
 			var ctrl = $controllerConstructor('gpaCalcController', { $scope: scope }),
 				form = {};
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'semester', grade: 'a', units: 4 }, form);
 			scope.addClass({ schedule: 'semester', grade: 'd', units: 2 }, form);
 
@@ -199,6 +226,7 @@ describe('gpaCalcController', function () {
 				form = {},
 				gpa;
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'semester', grade: 'a-', units: 2 }, form);
 			scope.addClass({ schedule: 'semester', grade: 'ab', units: 1 }, form);
 
@@ -214,6 +242,7 @@ describe('gpaCalcController', function () {
 				gpa,
 				gpacalc;
 
+			scope.gpaCalcForm = { $invalid: false };
 			scope.addClass({ schedule: 'semester', grade: 'a-', units: 2 }, form);
 			scope.addClass({ schedule: 'semester', grade: 'ab', units: 4 }, form);
 
