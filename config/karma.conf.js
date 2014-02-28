@@ -19,6 +19,17 @@ module.exports = function (config) {
 			'lib/angular/angular-scenario.js'
 		],
 
+		preprocessors: {
+			'js/**/*.js': ['coverage']
+		},
+
+		reporters: ['progress', 'coverage'],
+
+		coverageReporter: {
+			type: 'html',
+			dir: '../coverage/'
+		},
+
 		autoWatch : true,
 
 		frameworks: ['jasmine'],
@@ -35,7 +46,8 @@ module.exports = function (config) {
 			'karma-junit-reporter',
 			'karma-chrome-launcher',
 			'karma-firefox-launcher',
-			'karma-jasmine'
+			'karma-jasmine',
+			'karma-coverage'
 		],
 
 		junitReporter : {
