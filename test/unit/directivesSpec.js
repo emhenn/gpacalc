@@ -15,7 +15,6 @@ describe('focusMe directive', function () {
 		el = angular.element('<input type="text" id="myInput" focus-me />');
 		$compile(el)(scope);
 		angular.element(document.body).append(el);
-		scope.$digest();
 	}));
 
 	it('should focus on our element when the correct scope property is set', function () {
