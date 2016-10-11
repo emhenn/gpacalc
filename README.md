@@ -10,3 +10,4 @@ The page sorts the courses entered, calculates and subtotals GPA data per term, 
 
 If you are interested in using the app as-is, everything you need is in the /app directory, and you can safely ignore everything else.
 
+Grade point conversions are taken from the [LSAC conversion table](http://www.lsac.org/jd/applying-to-law-school/academic-record).
